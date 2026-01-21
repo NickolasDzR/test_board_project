@@ -46,7 +46,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function board() {
+    public function bbs() {
         return $this->hasMany(Bb::class);
     }
 }

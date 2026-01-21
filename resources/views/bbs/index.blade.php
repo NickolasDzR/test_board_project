@@ -6,7 +6,7 @@
             Объявления
         </h1>
 
-        @if (count($boards))
+        @if (count($bbs))
             <table class="table table-striped table-borderless">
                 <thead>
                 <tr>
@@ -17,18 +17,18 @@
                 </thead>
                 <tbody>
 
-                @foreach ($boards as $board)
+                @foreach ($bbs as $bb)
                     <tr>
                         <td>
                             <h4>
-                                {{ $board->title  }}
+                                {{ $bb->title  }}
                             </h4>
                         </td>
                         <td>
-                            {{ $board->price }}
+                            {{ $bb->price }}
                         </td>
                         <td class="text-end">
-                            <a href="{{ route('board.show', $board) }}">Подробнее...</a>
+                            <a href="{{ route('show', $bb) }}">Подробнее...</a>
                         </td>
                     </tr>
                 @endforeach
