@@ -3,19 +3,21 @@
 @section('title', 'Мои объявления')
 
 @section('content')
-    <p class="text-end"></p>
-    <a href="">Добавить объявление</a>
+    <div class="container">
+        <br>
+        <p class="text-start">Текущий юзер: {{ $email }}</p>
+        <a href="">Добавить объявление</a>
 
-    @if(count($bbs) > 0)
-        <table>
-            <thead>
+        @if(count($bbs) > 0)
+            <table>
+                <thead>
                 <tr>
                     <th>Товар</th>
-                    <th>ЦЦена, руб.</th>
+                    <th>Цена, руб.</th>
                     <th colspan="2">&nbsp;</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 @foreach ($bbs as $bb)
                     <tr>
                         <td>
@@ -36,7 +38,8 @@
                         </td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
-    @endif
+                </tbody>
+            </table>
+        @endif
+    </div>
 @endsection
