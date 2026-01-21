@@ -1,16 +1,39 @@
 @extends('layouts.app')
 
 @section('content')
-    Объявления о продаже:
-    <br>
+    <div class="container">
+        <h1 class="my-3 text-center">
+            Объявления
+        </h1>
 
-    @foreach ($boards as $board)
-        <h1 style="margin-bottom: 0">{{ $board->title  }}</h1>
-        <p style="margin-block-start: 3px; margin-block-end: 3px;">{{ $board->content }}</p>
-        <span>{{ $board->price }}</span>
-        <br>
-        <a href="{{ route('board.show', $board) }}">Перейти в объявление</a>
-        <br>
-        <br>
-    @endforeach
+        @if (count($boards))
+            <table class="table table-striped table-borderless">
+                <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th>Цена, руб.</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach ($boards as $board)
+                    <tr>
+                        <td>
+                            <h4>
+                                {{ $board->title  }}
+                            </h4>
+                        </td>
+                        <td>
+                            {{ $board->price }}
+                        </td>
+                        <td class="text-end">
+                            <a href="{{ route('board.show', $board) }}">Подробнее...</a>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        @endif
+    </div>
 @endsection
