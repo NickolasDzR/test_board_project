@@ -31,5 +31,21 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/', [BbsController::class, 'index'])
     ->name('index');
+
+Route::get('/create', [BbsController::class, 'create'])
+    ->name('create');
+
+Route::post('/store', [BbsController::class, 'store'])
+    ->name('store');
+
+Route::get('/edit/{bb}', [BbsController::class, 'edit'])
+    ->name('edit');
+
+Route::patch('/update/{bb}', [BbsController::class, 'update'])
+    ->name('update');
+
+Route::delete('/delete/{bb}', [BbsController::class, 'destroy'])
+    ->name('delete');
+
 Route::get('/{bb}', [BbsController::class, 'show'])
     ->name('show');

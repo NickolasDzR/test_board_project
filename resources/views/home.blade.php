@@ -6,7 +6,7 @@
     <div class="container">
         <br>
         <p class="text-start">Текущий юзер: {{ $email }}</p>
-        <a href="">Добавить объявление</a>
+        <a class="mb-3 d-block" href="{{ route('create') }}">Добавить объявление</a>
 
         @if(count($bbs) > 0)
             <table>
@@ -29,12 +29,12 @@
                             {{ $bb->price }}
                         </td>
                         <td>
-                            <a href="">
+                            <a href="{{ route('edit', [$bb]) }}">
                                 Изменить
                             </a>
                         </td>
                         <td>
-                            <a href="">Удалить</a>
+                            <a href="{{ route('delete', [$bb]) }}" data-confirm="Вы уверены?" data-method="delete" rel="nofollow">Удалить Статью {{ $bb->title }}</a>
                         </td>
                     </tr>
                 @endforeach
