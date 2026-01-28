@@ -5,7 +5,9 @@
 @section('content')
     <div class="container">
         <br>
-        <p class="text-start">Текущий юзер: {{ $email }}</p>
+        <h2>Добро пожаловать, {{ Auth::user()->name }}</h2>
+        <br>
+        <p class="text-start">Текущий юзер email юзера: {{ $email }}</p>
         <a class="mb-3 d-block" href="{{ route('create') }}">Добавить объявление</a>
 
         @if(count($bbs) > 0)

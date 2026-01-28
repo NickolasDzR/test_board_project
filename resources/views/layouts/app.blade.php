@@ -16,14 +16,18 @@
 <div class="container">
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand me-auto" href="{{ route("index") }}">Объявления</a>
-            <a class="navbar-brand me-auto" href="{{ route("register") }}">Регистрация</a>
-            <a class="navbar-brand me-auto" href="{{ route("login") }}">Вход</a>
-            <a class="navbar-brand me-auto" href="{{ route("home") }}">Мои объявления</a>
-            <form action="{{ route('logout') }}" method="POST" class="form-inline">
-                @csrf
-                <input type="submit" class="btn btn-danger" value="Выход">
-            </form>
+            <a class="navbar-brand me-auto" href="{{ route("index") }}">Все объявления</a>
+            @guest
+                <a class="navbar-brand me-auto" href="{{ route("register") }}">Регистрация</a>
+                <a class="navbar-brand me-auto" href="{{ route("login") }}">Вход</a>
+            @endguest
+            @auth
+                <a class="navbar-brand me-auto" href="{{ route("home") }}">Мои объявления</a>
+                <form action="{{ route('logout') }}" method="POST" class="form-inline">
+                    @csrf
+                    <input type="submit" class="btn btn-danger" value="Выход">
+                </form>
+            @endauth
         </div>
     </nav>
 </div>

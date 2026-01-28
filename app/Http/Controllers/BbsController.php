@@ -31,7 +31,7 @@ class BbsController extends Controller
         $data = $request->validate([
             'title' => 'required|unique:bbs|max:255',
             'content' => 'required|max:255',
-            'price' => 'required|max:255',
+            'price' => 'required|numeric',
         ]);
 
         Auth::user()->bbs()->create($data);
@@ -52,7 +52,7 @@ class BbsController extends Controller
                 Rule::unique('bbs')->ignore($bb->id),
             ],
             'content' => 'required|max:255',
-            'price' => 'required|max:255',
+            'price' => 'required|numeric',
         ]);
 
         $bb->update($data);

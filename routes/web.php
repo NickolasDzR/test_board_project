@@ -22,30 +22,38 @@ Route::middleware('guest')->group(function () {
 
 // Группа для авторизованных
 Route::middleware('auth')->group(function () {
-    // Личный кабинет пользователя6
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    // Личный кабинет пользователя
+    Route::get('/home', [HomeController::class, 'index'])
+        ->name('home');
 
     // Выход
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('/logout', [LoginController::class, 'logout'])
+        ->name('logout');
+
+    // ТОЛЬКО АВТОРИЗОВАННЫЕ МОГУТ СОЗДАВАТЬ
+    Route::get('/create', [BbsController::class, 'create'])
+        ->name('create');
+
+    Route::post('/store', [BbsController::class, 'store'])
+        ->name('store');
+
+    // РЕДАКТИРОВАНИЕ: ПРОВЕРКА update ПОЛИТИКИ
+    Route::get('/edit/{bb}', [BbsController::class, 'edit'])
+        ->name('edit')
+        ->middleware('can:update,bb');
+
+    Route::patch('/update/{bb}', [BbsController::class, 'update'])
+        ->name('update')
+        ->middleware('can:update,bb');;
+
+    Route::delete('/delete/{bb}', [BbsController::class, 'destroy'])
+        ->name('delete')
+        ->middleware('can:destroy,bb');;
+
 });
 
 Route::get('/', [BbsController::class, 'index'])
     ->name('index');
-
-Route::get('/create', [BbsController::class, 'create'])
-    ->name('create');
-
-Route::post('/store', [BbsController::class, 'store'])
-    ->name('store');
-
-Route::get('/edit/{bb}', [BbsController::class, 'edit'])
-    ->name('edit');
-
-Route::patch('/update/{bb}', [BbsController::class, 'update'])
-    ->name('update');
-
-Route::delete('/delete/{bb}', [BbsController::class, 'destroy'])
-    ->name('delete');
 
 Route::get('/{bb}', [BbsController::class, 'show'])
     ->name('show');
